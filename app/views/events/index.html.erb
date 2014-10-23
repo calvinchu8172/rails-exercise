@@ -1,4 +1,4 @@
-<ul>
+<!-- <ul>
 <% @events.each do |event| %>
   <li>
  	  <%= event.name %>
@@ -8,4 +8,18 @@
   </li>
 <% end %>
 </ul>
-<%= link_to 'New event', :controller => 'events', :action => 'new' %>
+<%= link_to 'New event', :controller => 'events', :action => 'new' %> -->
+
+<% @events.each do |event| %>
+  <li>
+  	<%= event.name %>
+    <%= link_to 'show', event_path(event) %>
+    <%= link_to 'edit', edit_event_path(event) %>
+    <%= button_to 'delete', event_path(event), :method => :delete %>
+  </li>
+<% end %>
+</ul>
+
+<%= link_to 'new event', new_event_path %>
+
+<%= paginate @events %>
