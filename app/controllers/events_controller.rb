@@ -24,6 +24,25 @@ end
 
 def show
   @event = Event.find(params[:id])
+  @page_title = @event.name
+end
+
+def edit
+  @event = Event.find(params[:id])
+end
+
+def update
+  @event = Event.find(params[:id])
+  @event.update_attributes(event_params)
+
+  redirect_to :action => :show, :id => @event
+end
+
+def destroy
+  @event = Event.find(params[:id])
+  @event.destroy
+
+  redirect_to :action => :index
 end
 
 private
