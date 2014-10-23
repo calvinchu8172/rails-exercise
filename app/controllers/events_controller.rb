@@ -19,9 +19,12 @@ end
 
 def create
   @event = Event.new(event_params)
-  @event.save
-
-  redirect_to :action => :index
+  
+  if @event.save
+    redirect_to :action => :index
+  else
+    render :action => :new
+  end
 end
 
 def show
@@ -32,9 +35,11 @@ def edit
 end
 
 def update
-  @event.update_attributes(event_params)
-
-  redirect_to :action => :show, :id => @event
+  if @event.update_attributes(event_params)
+    redirect_to :action => :show, :id => @event
+  else
+    render :action => :edit
+  end
 end
 
 def destroy
